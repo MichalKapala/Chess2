@@ -1,16 +1,18 @@
 #include "../headers/MainApp.hpp"
-#include "../headers/Fields.hpp"
+#include "../headers/Board.hpp"
 #include <iostream>
 
+const int WINDOW_HEIGHT=480;
+const int WINDOW_WIDTH=480;
 
 MainApp::MainApp(){
-    window = new sf::RenderWindow(sf::VideoMode(480, 480), "Chess!");
+    window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chess!");
 }
 
 void MainApp::run(sf::RenderWindow & window)
 {
-    Field field(22,0,60,60,0);
-    field.setField(sf::Color(250, 250, 0));
+    Board board(WINDOW_WIDTH, WINDOW_HEIGHT);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -18,7 +20,7 @@ void MainApp::run(sf::RenderWindow & window)
             if (event.type == sf::Event::Closed) window.close();
         }
         window.clear();
-        window.draw(field);
+        for(int i=0;i<board.fields.size();i++) window.draw(board.fields[i]);
         window.display();
     }
 }
