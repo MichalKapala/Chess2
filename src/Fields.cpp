@@ -1,5 +1,5 @@
 #include "../headers/Fields.hpp"
-#include <iostream>
+
 
 Field::Field(int width, int height, int number)
             : width(width), height(height), number(number)
@@ -7,6 +7,7 @@ Field::Field(int width, int height, int number)
                 setPosVector();
                 setField();
                 setColor();
+                setCoordinates();
             }
 
 void Field::setField()
@@ -32,3 +33,8 @@ void Field::setPosVector()
 
 }
 
+void Field::setCoordinates()
+{
+   coordinates = parser.getCoordinatesParser(position.x, position.y, width, height);
+   std::cout<<coordinates<<std::endl;
+}

@@ -12,7 +12,9 @@ Board::Board(int width, int height):
 void Board::setBoard()
 {
        for(int i=0; i<64; i++)
-        fields.push_back(Field(field_width, field_height, i));
+       {
+           fields.push_back(Field(field_width, field_height, i));
+       }
 }
 
 

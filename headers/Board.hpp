@@ -11,5 +11,5 @@ public:
 
     Board(int, int);
     void setBoard();
-    void drawBoard(sf::RenderWindow & window);
+    void drawBoard();
 };
