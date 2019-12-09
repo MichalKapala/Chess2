@@ -9,6 +9,7 @@ public:
     sf::Color BLACK = sf::Color(233, 141, 50);
     int number;
     int width, height;
+    int holded_piece;
     Parser parser;
     sf::Vector2i position;
     std::string coordinates;
@@ -18,5 +19,6 @@ public:
     void setField();
     void setPosVector();
     void setCoordinates();
+
 
 };

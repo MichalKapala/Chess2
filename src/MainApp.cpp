@@ -4,40 +4,41 @@
 const int WINDOW_HEIGHT=480;
 const int WINDOW_WIDTH=480;
 
+
 MainApp::MainApp(){
     board = new Board(WINDOW_WIDTH, WINDOW_HEIGHT);
-    bKing = new King("e8", "Bking", 16, 60, 60);
-    bQueen = new Queen("d8", "BQueen", 17, 60, 60);
-    bBishop1 = new Bishop("f8", "Bbishop", 18, 60, 60);
-    bBishop2 = new Bishop("c8", "Bbishop", 19, 60, 60);
-    bKnight1 = new Knight("g8", "Bknight", 20, 60, 60);
-    bKnight2 = new Knight("b8", "Bknight", 21, 60, 60);
-    bRook1 = new Rook("h8", "Brook", 22, 60, 60);
-    bRook2 = new Rook("a8", "Brook", 23, 60, 60);
-    bPawn1 = new Pawn("a7", "Bpawn", 24, 60, 60);
-    bPawn2 = new Pawn("b7", "Bpawn", 25, 60, 60),
-    bPawn3 = new Pawn("c7", "Bpawn", 26, 60, 60);
-    bPawn4 = new Pawn("d7", "Bpawn", 27, 60, 60);
-    bPawn5 = new Pawn("e7", "Bpawn", 28, 60, 60);
-    bPawn6 = new Pawn("f7", "Bpawn", 29, 60, 60);
-    bPawn7 = new Pawn("g7", "Bpawn", 30, 60, 60);
-    bPawn8 = new Pawn("h7", "Bpawn", 31, 60, 60);
-    wKing = new King("e1", "Wking", 0, 60, 60);
-    wQueen = new Queen("d1", "Wqueen", 1, 60, 60);
-    wBishop1 = new Bishop("f1", "Wbishop", 2, 60, 60);
-    wBishop2 = new Bishop("c1", "Wbishop", 3, 60, 60);
-    wKnight1 = new Knight("g1", "Wknight", 4, 60, 60);
-    wKnight2 = new Knight("b1", "Wknight", 5, 60, 60);
-    wRook1 = new Rook("h1", "Wrook", 6, 60, 60);
-    wRook2 = new Rook("a1", "Wrook", 7, 60, 60);
-    wPawn1 = new Pawn("a2", "Wpawn", 8, 60, 60);
-    wPawn2 = new Pawn("b2", "Wpawn", 9, 60, 60),
-    wPawn3 = new Pawn("c2", "Wpawn", 10, 60, 60);
-    wPawn4 = new Pawn("d2", "Wpawn", 11, 60, 60);
-    wPawn5 = new Pawn("e2", "Wpawn", 12, 60, 60);
-    wPawn6 = new Pawn("f2", "Wpawn", 13, 60, 60);
-    wPawn7 = new Pawn("g2", "Wpawn", 14, 60, 60);
-    wPawn8 = new Pawn("h2", "Wpawn", 15, 60, 60);
+    bKing = new King(board, "e8", "Bking", 16, 60, 60);
+    bQueen = new Queen(board, "d8", "BQueen", 17, 60, 60);
+    bBishop1 = new Bishop(board, "f8", "Bbishop", 18, 60, 60);
+    bBishop2 = new Bishop(board, "c8", "Bbishop", 19, 60, 60);
+    bKnight1 = new Knight(board, "g8", "Bknight", 20, 60, 60);
+    bKnight2 = new Knight(board, "b8", "Bknight", 21, 60, 60);
+    bRook1 = new Rook(board, "h8", "Brook", 22, 60, 60);
+    bRook2 = new Rook(board, "a8", "Brook", 23, 60, 60);
+    bPawn1 = new Pawn(board, "a7", "Bpawn", 24, 60, 60);
+    bPawn2 = new Pawn(board, "b7", "Bpawn", 25, 60, 60),
+    bPawn3 = new Pawn(board, "c7", "Bpawn", 26, 60, 60);
+    bPawn4 = new Pawn(board, "d7", "Bpawn", 27, 60, 60);
+    bPawn5 = new Pawn(board, "e7", "Bpawn", 28, 60, 60);
+    bPawn6 = new Pawn(board, "f7", "Bpawn", 29, 60, 60);
+    bPawn7 = new Pawn(board, "g7", "Bpawn", 30, 60, 60);
+    bPawn8 = new Pawn(board, "h7", "Bpawn", 31, 60, 60);
+    wKing = new King(board, "e1", "Wking", 0, 60, 60);
+    wQueen = new Queen(board, "d1", "Wqueen", 1, 60, 60);
+    wBishop1 = new Bishop(board, "f1", "Wbishop", 2, 60, 60);
+    wBishop2 = new Bishop(board, "c1", "Wbishop", 3, 60, 60);
+    wKnight1 = new Knight(board, "g1", "Wknight", 4, 60, 60);
+    wKnight2 = new Knight(board, "b1", "Wknight", 5, 60, 60);
+    wRook1 = new Rook(board, "h1", "Wrook", 6, 60, 60);
+    wRook2 = new Rook(board, "a1", "Wrook", 7, 60, 60);
+    wPawn1 = new Pawn(board, "a2", "Wpawn", 8, 60, 60);
+    wPawn2 = new Pawn(board, "b2", "Wpawn", 9, 60, 60),
+    wPawn3 = new Pawn(board, "c2", "Wpawn", 10, 60, 60);
+    wPawn4 = new Pawn(board, "d2", "Wpawn", 11, 60, 60);
+    wPawn5 = new Pawn(board, "e2", "Wpawn", 12, 60, 60);
+    wPawn6 = new Pawn(board, "f2", "Wpawn", 13, 60, 60);
+    wPawn7 = new Pawn(board, "g2", "Wpawn", 14, 60, 60);
+    wPawn8 = new Pawn(board, "h2", "Wpawn", 15, 60, 60);
 }
 
 void MainApp::drawFigures(sf::RenderWindow & window)
@@ -80,6 +81,7 @@ void MainApp::drawFigures(sf::RenderWindow & window)
 
 void MainApp::processFigures(sf::RenderWindow & window)
 {
+    board->resetFields();
     bKing->process(window);
     bQueen->process(window);
     bBishop1->process(window);
@@ -131,8 +133,10 @@ void MainApp::run(sf::RenderWindow & window)
         window.clear();
         drawBoard( window);
         drawFigures(window);
+        processFigures(window);
         window.display();
     }
+
 }
 
 

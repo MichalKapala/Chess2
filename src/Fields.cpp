@@ -4,6 +4,7 @@
 Field::Field(int width, int height, int number)
             : width(width), height(height), number(number)
             {
+                holded_piece = -1;
                 setPosVector();
                 setField();
                 setColor();
@@ -36,5 +37,4 @@ void Field::setPosVector()
 void Field::setCoordinates()
 {
    coordinates = parser.getCoordinatesParser(position.x, position.y, width, height);
-   std::cout<<coordinates<<std::endl;
 }

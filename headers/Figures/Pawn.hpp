@@ -8,6 +8,7 @@ public:
     int possible_moves;
     int color_scalar;
 
-    Pawn(std::string, std::string, int, int, int);
+    Pawn(Board *,std::string, std::string, int, int, int);
+
     void process(sf::RenderWindow &);
 };

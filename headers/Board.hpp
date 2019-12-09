@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Fields.hpp"
 #include <vector>
+#pragma once
 
 class Board
 {
@@ -12,4 +13,6 @@ public:
     Board(int, int);
     void setBoard();
     void drawBoard();
+    void setFieldHoldedPiece(int, std::string);
+    void resetFields();
 };
