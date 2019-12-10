@@ -27,14 +27,8 @@ void Board::resetFields()
 
 void Board::setFieldHoldedPiece(int id, std::string coords)
 {
-
-    for(int i =0; i < fields.size(); i++)
-    {
-        if(fields[i].coordinates == coords)
-        {
-            fields[i].holded_piece = id;
-        }
-    }
+    Parser parser;
+    fields[parser.getFieldNumberParser(coords)].holded_piece = id;
 }
 
 

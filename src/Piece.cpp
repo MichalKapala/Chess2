@@ -25,7 +25,7 @@ void Piece::setPiecePosition()
 
 std::string Piece::getPath()
 {
-    return "D:/C/Chess2/img/" + kind + ".png";
+    return "img/" + kind + ".png";
 }
 
 void Piece::setPiece()
@@ -38,8 +38,8 @@ void Piece::setPiece()
 
 void Piece::setPieceColor()
 {
-    if(kind[0] == 'B') color=1;
-    else color = 0;
+    if(kind[0] == 'B') color = -1;
+    else color = 1;
 }
 
 void Piece::setPieceKindNumber()
@@ -87,22 +87,26 @@ void Piece::center()
 {
     int y_field, x_field;
 
-    x_field = position.x / width;
-    y_field = position.y / height;
+    x_field = moved_position.x / width;
+    y_field = moved_position.y / height;
 
-    if((int)position.x % width > width / 2)
-        position.x = (x_field + 1) * width;
+    if((int)moved_position.x % width > width / 2)
+        moved_position.x = (x_field + 1) * width;
     else
-        position.x = x_field * width;
+        moved_position.x = x_field * width;
 
-    if((int)position.y % height > height / 2)
-        position.y = (y_field + 1)  * height;
+    if((int)moved_position.y % height > height / 2)
+        moved_position.y = (y_field + 1)  * height;
     else
-        position.y = y_field * height;
+        moved_position.y = y_field * height;
 
-    setPosition(position);
 }
 
+void Piece::setCoordinates()
+{
+    field = parser.getCoordinatesParser(position.x, position.y, width, height);
+    std::cout<<field<<" "<<board->fields[parser.getFieldNumberParser(field)].coordinates<<std::endl;
+}
 
 void Piece::changePosition(float x, float y)
 {

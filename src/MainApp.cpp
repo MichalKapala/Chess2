@@ -81,7 +81,7 @@ void MainApp::drawFigures(sf::RenderWindow & window)
 
 void MainApp::processFigures(sf::RenderWindow & window)
 {
-    board->resetFields();
+
     bKing->process(window);
     bQueen->process(window);
     bBishop1->process(window);
@@ -114,6 +114,7 @@ void MainApp::processFigures(sf::RenderWindow & window)
     wPawn6->process(window);
     wPawn7->process(window);
     wPawn8->process(window);
+
 }
 
 void MainApp::drawBoard(sf::RenderWindow & window)

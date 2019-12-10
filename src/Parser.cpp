@@ -36,5 +36,10 @@ std::string Parser::getCoordinatesParser(int x, int y, int width, int height)
     y_parsed = char((8 - (y / width)) + '0');
     return_string += x_parsed;
     return_string += y_parsed;
-    return return_string;;
+    return return_string;
+}
+
+int Parser::getFieldNumberParser(std::string coords)
+{
+    return  ((coords[0]) - 97)  + (8 - (int)(coords[1] - '0')) * 8;
 }

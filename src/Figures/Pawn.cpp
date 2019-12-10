@@ -8,7 +8,76 @@ Pawn::Pawn(Board * board, std::string field, std::string kind, int id, int width
 
 void Pawn::process(sf::RenderWindow & window)
 {
-    movePiece(window);
-    board->setFieldHoldedPiece(id, field);
+    movePawn(window);
+}
+
+void Pawn::calculateNextMove()
+{
+    std::string nextfield;
+    nextfield += field[0];
+    nextfield += (char)(field[1] + color);
+    if(board->fields[parser.getFieldNumberParser(nextfield)].holded_piece == -1)
+    {
+        possible_moves_vector.push_back(nextfield);
+        std::cout<<nextfield<<std::endl;
+    }
+
+
+}
+
+void Pawn::calculateFirstMove()
+{
+    std::string nextfield;
+    nextfield += field[0];
+    nextfield += (char)(field[1] + 2*color);
+    if(board->fields[parser.getFieldNumberParser(nextfield)].holded_piece == -1 &&
+       counted_move == 0)
+        possible_moves_vector.push_back(nextfield);
+
+}
+
+void Pawn::moveValidation()
+{
+    bool found_vector = false;
+
+    calculateNextMove();
+    calculateFirstMove();
+
+    for(int i=0; i < possible_moves_vector.size(); i++)
+    {
+        if(parser.getCoordinatesParser(moved_position.x, moved_position.y, width, height) == possible_moves_vector[i])
+        {
+            board->setFieldHoldedPiece(-1, field);
+            position = moved_position;
+            setCoordinates();
+            board->setFieldHoldedPiece(id, field);
+            found_vector = true;
+            counted_move ++;
+            break;
+        }
+    }
+    if(!found_vector) moved_position = position;
+    setPosition(position);
+    possible_moves_vector.clear();
+
+}
+
+void Pawn::movePawn(sf::RenderWindow & window)
+{
+    if(isPieceTouchedOnPosition(window) && check_id())
+    {
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            moved_id = id;
+            moved_position.x = sf::Mouse::getPosition(window).x - (width / 2);
+            moved_position.y = sf::Mouse::getPosition(window).y - (height / 2);
+            setPosition(moved_position);
+        }
+        else{
+            moved_id = -1;
+            center();
+            moveValidation();
+        }
+    }
 }
 
