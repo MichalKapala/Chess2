@@ -16,5 +16,6 @@ public:
     void movePawn(sf::RenderWindow &);
     void calculateNextMove();
     void calculateFirstMove();
+    void calculateCapture();
 
 };

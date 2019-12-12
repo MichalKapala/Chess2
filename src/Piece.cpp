@@ -105,7 +105,6 @@ void Piece::center()
 void Piece::setCoordinates()
 {
     field = parser.getCoordinatesParser(position.x, position.y, width, height);
-    std::cout<<field<<" "<<board->fields[parser.getFieldNumberParser(field)].coordinates<<std::endl;
 }
 
 void Piece::changePosition(float x, float y)

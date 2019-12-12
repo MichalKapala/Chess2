@@ -4,6 +4,7 @@ Pawn::Pawn(Board * board, std::string field, std::string kind, int id, int width
             Piece(board, field, kind, id, width, height)
             {
                 counted_move = 0;
+                board->setFieldHoldedPiece(id, field);
             }
 
 void Pawn::process(sf::RenderWindow & window)
@@ -19,7 +20,6 @@ void Pawn::calculateNextMove()
     if(board->fields[parser.getFieldNumberParser(nextfield)].holded_piece == -1)
     {
         possible_moves_vector.push_back(nextfield);
-        std::cout<<nextfield<<std::endl;
     }
 
 
@@ -33,8 +33,29 @@ void Pawn::calculateFirstMove()
     if(board->fields[parser.getFieldNumberParser(nextfield)].holded_piece == -1 &&
        counted_move == 0)
         possible_moves_vector.push_back(nextfield);
+}
+
+void Pawn::calculateCapture()
+{
+    std::string nextfield1;
+    std::string nextfield2;
+    int holded_piece1;
+    int holded_piece2;
+
+    nextfield1 += field[0] - 1;
+    nextfield1 += (char)(field[1] + color);
+    nextfield2 += field[0] + 1;
+    nextfield2 += (char)(field[1] + color);
+    holded_piece1 = board->fields[parser.getFieldNumberParser(nextfield1)].holded_piece;
+    holded_piece2 = board->fields[parser.getFieldNumberParser(nextfield2)].holded_piece;
+
+    if(holded_piece1 != -1 && holded_piece1 / 16 != id / 16)
+        possible_moves_vector.push_back(nextfield1);
+    if(holded_piece2 != -1 && holded_piece2 / 16 != id / 16)
+        possible_moves_vector.push_back(nextfield2);
 
 }
+
 
 void Pawn::moveValidation()
 {
@@ -42,6 +63,7 @@ void Pawn::moveValidation()
 
     calculateNextMove();
     calculateFirstMove();
+    calculateCapture();
 
     for(int i=0; i < possible_moves_vector.size(); i++)
     {
