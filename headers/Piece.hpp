@@ -33,8 +33,11 @@ public:
     void moveInto(sf::Vector2f);
     void changePosition(float, float);
     void setCoordinates();
+    void resetTempPos(int &x, int &y);
+    void deactivation();
     bool isPieceActive();
     bool isPieceTouchedOnPosition(sf::RenderWindow &);
     bool check_id();
+
 
 };

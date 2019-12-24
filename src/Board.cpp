@@ -29,6 +29,11 @@ void Board::setFieldHoldedPiece(int id, std::string coords)
 {
     Parser parser;
     fields[parser.getFieldNumberParser(coords)].holded_piece = id;
+
 }
 
+void Board::addCaptured(int id)
+{
+    captured_pieces.push_back(id);
+}
 

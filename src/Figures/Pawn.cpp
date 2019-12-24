@@ -10,6 +10,7 @@ Pawn::Pawn(Board * board, std::string field, std::string kind, int id, int width
 void Pawn::process(sf::RenderWindow & window)
 {
     movePawn(window);
+    deactivation();
 }
 
 void Pawn::calculateNextMove()
@@ -50,12 +51,18 @@ void Pawn::calculateCapture()
     holded_piece2 = board->fields[parser.getFieldNumberParser(nextfield2)].holded_piece;
 
     if(holded_piece1 != -1 && holded_piece1 / 16 != id / 16)
-        possible_moves_vector.push_back(nextfield1);
+    possible_moves_vector.push_back(nextfield1);
+
     if(holded_piece2 != -1 && holded_piece2 / 16 != id / 16)
-        possible_moves_vector.push_back(nextfield2);
+    possible_moves_vector.push_back(nextfield2);
 
 }
 
+void Pawn::capturePiece(int captured_id)
+{
+    if(captured_id != -1 && captured_id / 16 != id/16)
+        board->addCaptured(captured_id);
+}
 
 void Pawn::moveValidation()
 {
@@ -70,8 +77,10 @@ void Pawn::moveValidation()
         if(parser.getCoordinatesParser(moved_position.x, moved_position.y, width, height) == possible_moves_vector[i])
         {
             board->setFieldHoldedPiece(-1, field);
+            std::cout<<field<<std::endl;
             position = moved_position;
             setCoordinates();
+            capturePiece(board->fields[parser.getFieldNumberParser(field)].holded_piece);
             board->setFieldHoldedPiece(id, field);
             found_vector = true;
             counted_move ++;

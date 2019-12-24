@@ -8,9 +8,11 @@ public:
     std::vector <std::string> possible_moves_vector;
 
     Bishop(Board *, std::string, std::string, int, int, int);
+
     void process(sf::RenderWindow &);
     void calculateMoves();
     void moveBishop(sf::RenderWindow &);
     void moveValidation();
+    bool addPossibleMove(int, std::string);
 };
 

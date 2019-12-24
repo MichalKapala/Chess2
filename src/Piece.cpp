@@ -113,3 +113,23 @@ void Piece::changePosition(float x, float y)
     position.y = y;
 }
 
+void Piece::resetTempPos(int & tempx, int & tempy)
+{
+    tempx = position.x;
+    tempy = position.y;
+}
+
+bool Piece::isPieceActive()
+{
+    return is_active;
+}
+
+void Piece::deactivation()
+{
+    for(int i=0; i<board->captured_pieces.size(); i++)
+        if(board->captured_pieces[i] == id)
+    {
+        is_active = false;
+        break;
+    }
+}

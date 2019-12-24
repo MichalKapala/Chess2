@@ -13,6 +13,21 @@ void Bishop::process(sf::RenderWindow & window)
 
 }
 
+bool Bishop::addPossibleMove(int temp_holded_piece, std::string temp_coords)
+{
+    if(temp_holded_piece == -1)
+        {
+            possible_moves_vector.push_back(temp_coords);
+        }else{
+            if(temp_holded_piece / 16 != id / 16 && temp_holded_piece != -1)
+            {
+                possible_moves_vector.push_back(temp_coords);
+                return 0;
+            }
+        }
+    return 1;
+}
+
 void Bishop::calculateMoves()
 {
     int temp_x = position.x ;
@@ -22,90 +37,46 @@ void Bishop::calculateMoves()
 
     while(temp_x < board->width && temp_y < board->height)
     {
-        temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
-        temp_holded_piece = board->fields[parser.getFieldNumberParser(temp_coords)].holded_piece;
-
-        if(temp_holded_piece == -1)
-        {
-            possible_moves_vector.push_back(temp_coords);
-        }else{
-            if(temp_holded_piece / 16 != id / 16 && temp_holded_piece != -1)
-            {
-                possible_moves_vector.push_back(temp_coords);
-                break;
-            }
-        }
-
         temp_x += width;
         temp_y += height;
+        temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
+        temp_holded_piece = board->fields[parser.getFieldNumberParser(temp_coords)].holded_piece;
+        if (!addPossibleMove(temp_holded_piece, temp_coords)) break;
     }
 
-    temp_x = position.x ;
-    temp_y = position.y ;
+    resetTempPos(temp_x, temp_y);
 
     while(temp_x < board->width && temp_y >= 0)
     {
-        temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
-        temp_holded_piece = board->fields[parser.getFieldNumberParser(temp_coords)].holded_piece;
-
-        if(temp_holded_piece == -1)
-        {
-            possible_moves_vector.push_back(temp_coords);
-        }else{
-            if(temp_holded_piece / 16 != id / 16 && temp_holded_piece != -1)
-            {
-                possible_moves_vector.push_back(temp_coords);
-                break;
-            }
-        }
         temp_x += width;
         temp_y -= height;
+        temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
+        temp_holded_piece = board->fields[parser.getFieldNumberParser(temp_coords)].holded_piece;
+        if (!addPossibleMove(temp_holded_piece, temp_coords)) break;
+
     }
 
-    temp_x = position.x ;
-    temp_y = position.y ;
+    resetTempPos(temp_x, temp_y);
 
     while(temp_x >= 0 && temp_y < board->height)
     {
-        temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
-        temp_holded_piece = board->fields[parser.getFieldNumberParser(temp_coords)].holded_piece;
-
-        if(temp_holded_piece == -1)
-        {
-            possible_moves_vector.push_back(temp_coords);
-        }else{
-            if(temp_holded_piece / 16 != id / 16 && temp_holded_piece != -1)
-            {
-                possible_moves_vector.push_back(temp_coords);
-                break;
-            }
-        }
-
         temp_x -= width;
         temp_y += height;
+        temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
+        temp_holded_piece = board->fields[parser.getFieldNumberParser(temp_coords)].holded_piece;
+        if (!addPossibleMove(temp_holded_piece, temp_coords)) break;
+
     }
 
-    temp_x = position.x ;
-    temp_y = position.y ;
+    resetTempPos(temp_x, temp_y);
 
     while(temp_x >= 0 && temp_y >= 0)
     {
-        temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
-        temp_holded_piece = board->fields[parser.getFieldNumberParser(temp_coords)].holded_piece;
-
-        if(temp_holded_piece == -1)
-        {
-            possible_moves_vector.push_back(temp_coords);
-        }else{
-            if(temp_holded_piece / 16 != id / 16 && temp_holded_piece != -1)
-            {
-                possible_moves_vector.push_back(temp_coords);
-                break;
-            }
-        }
-
         temp_x -= width;
         temp_y -= height;
+        temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
+        temp_holded_piece = board->fields[parser.getFieldNumberParser(temp_coords)].holded_piece;
+        if (!addPossibleMove(temp_holded_piece, temp_coords)) break;
     }
 
 }

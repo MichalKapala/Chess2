@@ -17,5 +17,6 @@ public:
     void calculateNextMove();
     void calculateFirstMove();
     void calculateCapture();
+    void capturePiece(int);
 
 };
