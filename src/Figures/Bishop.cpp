@@ -10,7 +10,7 @@ Bishop::Bishop(Board * board, std::string field, std::string kind, int id, int w
 void Bishop::process(sf::RenderWindow & window)
 {
     moveBishop(window);
-
+    deactivation();
 }
 
 bool Bishop::addPossibleMove(int temp_holded_piece, std::string temp_coords)
@@ -95,6 +95,7 @@ void Bishop::moveValidation()
             board->setFieldHoldedPiece(-1, field);
             position = moved_position;
             setCoordinates();
+            capturePiece(board->fields[parser.getFieldNumberParser(field)].holded_piece);
             board->setFieldHoldedPiece(id, field);
             found_vector = true;
             counted_move ++;
@@ -108,6 +109,12 @@ void Bishop::moveValidation()
 
 
 }
+void Bishop::capturePiece(int captured_id)
+{
+    if(captured_id != -1 && captured_id / 16 != id/16)
+        board->addCaptured(captured_id);
+}
+
 
 void Bishop::moveBishop(sf::RenderWindow & window)
 {

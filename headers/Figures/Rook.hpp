@@ -12,6 +12,7 @@ public:
     void calculateMoves();
     void moveValidation();
     void moveRook(sf::RenderWindow &);
+    void capturePiece(int);
     bool addPossibleMove(int, std::string);
 };
 

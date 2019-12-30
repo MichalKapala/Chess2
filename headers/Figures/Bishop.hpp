@@ -13,6 +13,7 @@ public:
     void calculateMoves();
     void moveBishop(sf::RenderWindow &);
     void moveValidation();
+    void capturePiece(int);
     bool addPossibleMove(int, std::string);
 };
 

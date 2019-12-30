@@ -10,6 +10,7 @@ Rook::Rook(Board * board, std::string field, std::string kind, int id, int width
 void Rook::process(sf::RenderWindow & window)
 {
     moveRook(window);
+    deactivation();
 }
 
 bool Rook::addPossibleMove(int temp_holded_piece, std::string temp_coords)
@@ -93,6 +94,7 @@ void Rook::moveValidation()
             board->setFieldHoldedPiece(-1, field);
             position = moved_position;
             setCoordinates();
+            capturePiece(board->fields[parser.getFieldNumberParser(field)].holded_piece);
             board->setFieldHoldedPiece(id, field);
             found_vector = true;
             counted_move ++;
@@ -104,6 +106,11 @@ void Rook::moveValidation()
     setPosition(position);
     possible_moves_vector.clear();
 
+}
+void Rook::capturePiece(int captured_id)
+{
+    if(captured_id != -1 && captured_id / 16 != id/16)
+        board->addCaptured(captured_id);
 }
 
 void Rook::moveRook(sf::RenderWindow & window)

@@ -12,5 +12,6 @@ public:
     void calculateMoves();
     void moveKnight(sf::RenderWindow &);
     void moveValidation();
+    void capturePiece(int);
     void addPossibleMove(int, std::string);
 };

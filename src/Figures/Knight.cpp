@@ -10,6 +10,7 @@ Knight::Knight(Board * board, std::string field, std::string kind, int id, int w
 void Knight::process(sf::RenderWindow & window)
 {
     moveKnight(window);
+    deactivation();
 }
 
 void Knight::addPossibleMove(int temp_holded_piece, std::string temp_coords)
@@ -61,6 +62,7 @@ void Knight::moveValidation()
             board->setFieldHoldedPiece(-1, field);
             position = moved_position;
             setCoordinates();
+            capturePiece(board->fields[parser.getFieldNumberParser(field)].holded_piece);
             board->setFieldHoldedPiece(id, field);
             found_vector = true;
             counted_move ++;
@@ -72,6 +74,12 @@ void Knight::moveValidation()
     setPosition(position);
     possible_moves_vector.clear();
 
+}
+
+void Knight::capturePiece(int captured_id)
+{
+    if(captured_id != -1 && captured_id / 16 != id/16)
+        board->addCaptured(captured_id);
 }
 
 void Knight::moveKnight(sf::RenderWindow & window)

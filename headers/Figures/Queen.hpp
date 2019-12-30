@@ -12,6 +12,7 @@ public:
     void calculateMoves();
     void moveQueen(sf::RenderWindow &);
     void moveValidation();
+    void capturePiece(int);
     bool addPossibleMove(int, std::string);
 };
 
