@@ -67,6 +67,7 @@ void King::moveValidation()
             board->setFieldHoldedPiece(id, field);
             found_vector = true;
             counted_move ++;
+            board->move_queue = abs((id / 16) - 1);
             break;
         }
     }
@@ -85,7 +86,7 @@ void King::capturePiece(int captured_id)
 
 void King::moveKing(sf::RenderWindow & window)
 {
-    if(isPieceTouchedOnPosition(window) && check_id())
+    if(isPieceTouchedOnPosition(window) && check_id() && board->move_queue == id /  16)
     {
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {

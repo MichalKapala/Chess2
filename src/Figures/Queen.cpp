@@ -138,6 +138,7 @@ void Queen::moveValidation()
             setCoordinates();
             capturePiece(board->fields[parser.getFieldNumberParser(field)].holded_piece);
             board->setFieldHoldedPiece(id, field);
+            board->move_queue = abs((id / 16) - 1);
             found_vector = true;
             counted_move ++;
             break;
@@ -157,7 +158,7 @@ void Queen::capturePiece(int captured_id)
 
 void Queen::moveQueen(sf::RenderWindow & window)
 {
-    if(isPieceTouchedOnPosition(window) && check_id())
+    if(isPieceTouchedOnPosition(window) && check_id() && board->move_queue == id / 16)
     {
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {

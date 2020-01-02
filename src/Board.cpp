@@ -4,6 +4,7 @@
 Board::Board(int width, int height):
             width(width), height(height)
              {
+                 move_queue = 0;
                  field_width = width/8;
                  field_height = height/8;
                  setBoard();
