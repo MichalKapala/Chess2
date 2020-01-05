@@ -14,7 +14,7 @@ Piece::Piece(Board * board, std::string field, std::string kind, int id, int wid
     setPiecePosition();
     setPieceKindNumber();
     setPieceColor();
-    setPiece();
+    if(kind!="") setPiece();
 }
 
 void Piece::setPiecePosition()

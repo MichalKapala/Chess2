@@ -1,4 +1,5 @@
 #include "../Piece.hpp"
+#include "../Check.hpp"
 
 class Queen: public Piece
 {
@@ -12,6 +13,7 @@ public:
     void calculateMoves();
     void moveQueen(sf::RenderWindow &);
     void moveValidation();
+    void filterMove();
     void capturePiece(int);
     bool addPossibleMove(int, std::string);
 };

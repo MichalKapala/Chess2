@@ -34,7 +34,7 @@ void Queen::calculateMoves()
     int temp_holded_piece;
     std::string temp_coords;
 
-    while(temp_x < board->width && temp_y < board->height)
+    while(temp_x < board->width - width&& temp_y < board->height - height)
     {
         temp_x += width;
         temp_y += height;
@@ -45,7 +45,7 @@ void Queen::calculateMoves()
 
     resetTempPos(temp_x, temp_y);
 
-    while(temp_x < board->width && temp_y >= 0)
+    while(temp_x < board->width - width && temp_y >= height)
     {
         temp_x += width;
         temp_y -= height;
@@ -57,7 +57,7 @@ void Queen::calculateMoves()
 
     resetTempPos(temp_x, temp_y);
 
-    while(temp_x >= 0 && temp_y < board->height)
+    while(temp_x >= width && temp_y < board->height - height)
     {
         temp_x -= width;
         temp_y += height;
@@ -69,7 +69,7 @@ void Queen::calculateMoves()
 
     resetTempPos(temp_x, temp_y);
 
-    while(temp_x >= 0 && temp_y >= 0)
+    while(temp_x >= width && temp_y >= height)
     {
         temp_x -= width;
         temp_y -= height;
@@ -79,7 +79,7 @@ void Queen::calculateMoves()
     }
     resetTempPos(temp_x, temp_y);
 
-     while(temp_x< board->width)
+     while(temp_x< board->width - width)
     {
         temp_x += width;
         temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
@@ -90,7 +90,7 @@ void Queen::calculateMoves()
 
     resetTempPos(temp_x, temp_y);
 
-    while(0 <= temp_x)
+    while(width <= temp_x)
     {
         temp_x-=width;
         temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
@@ -101,7 +101,7 @@ void Queen::calculateMoves()
 
     resetTempPos(temp_x, temp_y);
 
-    while(temp_y < board->height)
+    while(temp_y < board->height - height)
     {
         temp_y += height;
         temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
@@ -112,7 +112,7 @@ void Queen::calculateMoves()
 
     resetTempPos(temp_x, temp_y);
 
-    while(0 <= temp_y)
+    while(0 <= temp_y - height)
     {
         temp_y-=height;
         temp_coords = parser.getCoordinatesParser(temp_x, temp_y, width, height);
@@ -122,11 +122,29 @@ void Queen::calculateMoves()
     }
 }
 
+void Queen::filterMove()
+{
+    bool value;
+    std::vector <std::string> pom_vector;
+    for(int i=0;i<possible_moves_vector.size();i++)
+    {
+        CheckValidation * valid = new CheckValidation(*board, id);
+        value = valid->validateMove(field, possible_moves_vector[i]);
+        if(!value)
+        {
+            pom_vector.push_back(possible_moves_vector[i]);
+        }
+        delete valid;
+    }
+    possible_moves_vector.clear();
+    possible_moves_vector = pom_vector;
+}
+
 void Queen::moveValidation()
 {
     bool found_vector = false;
-
     calculateMoves();
+    filterMove();
 
     for(int i=0; i < possible_moves_vector.size(); i++)
     {
