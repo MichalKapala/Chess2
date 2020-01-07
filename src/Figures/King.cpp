@@ -49,12 +49,30 @@ void King::calculateMoves()
 
 }
 
+void King::filterMove()
+{
+    bool value;
+    std::vector <std::string> pom_vector;
+    for(int i=0;i<possible_moves_vector.size();i++)
+    {
+        CheckValidation * valid = new CheckValidation(*board, id);
+        value = valid->validateMove(field, possible_moves_vector[i]);
+        if(!value)
+        {
+            pom_vector.push_back(possible_moves_vector[i]);
+        }
+        delete valid;
+    }
+    possible_moves_vector.clear();
+    possible_moves_vector = pom_vector;
+}
+
 void King::moveValidation()
 {
     bool found_vector = false;
 
     calculateMoves();
-
+    filterMove();
     for(int i=0; i < possible_moves_vector.size(); i++)
     {
 

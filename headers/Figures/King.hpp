@@ -1,8 +1,8 @@
 #include "../Piece.hpp"
+#include "../Check.hpp"
 
 class King: public Piece
 {
-
 public:
     bool is_checked;
     int possible_moves;
@@ -14,6 +14,7 @@ public:
     void calculateMoves();
     void moveKing(sf::RenderWindow &);
     void moveValidation();
+    void filterMove();
     void capturePiece(int);
     void addPossibleMove(int, std::string);
 };
